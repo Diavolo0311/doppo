@@ -1,0 +1,29 @@
+﻿<html>
+<head>
+	<meta charset+"UTF-8"
+	<title>0224</title>
+</head>
+<body>
+
+	<a id="top"></a>
+	<a target="_blank" href="https://www.google.com/">/a>  
+	<a href="">內部超連結(書籤) </a>
+	<!--釣魚網站jojo-->
+	???????????????????<a id="bookmark1">?</a>
+	
+	
+
+	<a href="#top"></a>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
