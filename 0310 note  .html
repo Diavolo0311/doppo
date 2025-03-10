@@ -1,0 +1,113 @@
+﻿<html>
+<head>
+	<title>0310筆記-CSS</title>
+	<title>顏色?反正就是顏色!</title>
+	<meta charset="UTF-8">
+	<style>
+		
+		/* CSS  color:
+			1. name
+			2. #HEX  00~FF
+			3. rgb(r.g.b)  0~255
+			4. rgba(r.g.b.a  0~1)
+			5. hsl(色相0~360, 彩度0~100% , 亮度0~100%)
+			6. hsla(h,s,l, 可見度0~1)
+		*/
+
+		#d1 {
+			width:300px;
+			height:100px;
+			background-color: #FFFFFF;
+		}
+		.grad {
+			width:300px;
+			height:100px;
+			margin: 10px 0px;
+			display: inline-block;
+		}
+		#d2 {
+			background: linear-gradient(red,yellow);
+		}
+		#d3 {		/* to { top 上  right 右  bottom 下  left 左  } deg=角度，參數   ↑ 漸層作法，用百分比*/
+			background: linear-gradient(123deg right,red,yellow,green,rgb(2, 2, 255),violet,purple)
+		}
+		#d4 {
+			background: linear-gradient(90deg,red 30%,white 40% ,white 60%,blue 70%)
+		}
+		#d5 {
+			background: repeating-linear-gradient(45deg,red 45%,white 50%,red 45%)
+		}
+		#r1 {   /*    前面加的是容器*/
+			background: radial-gradient(circle ,yellow,white,black);
+		}
+		#r2 {   /*    前面加的是容器*/
+			background: radial-gradient(circle ,yellow,white 30%,black);
+		}
+		#r3 {   /*    前面加的是容器*/
+			background: repeating-radial-gradient(circle ,yellow,white 30%,black 35%,gray 40%);
+		}
+		#c1 {   /*    前面加的是從哪個角度開始*/
+			background: conic-gradient(red,blue,green,yellow)
+		}
+		#c2 {
+			background: conic-gradient(from 45% red,blue,green,yellow,rgb(26, 152, 224))
+		}
+		#c3 {   /*   重複的範例*/
+			background: repeating-conic-gradient(from 45% red 10%,blue 20%,green 15%,yellow 20%)
+		}
+		.anim {
+			width:400px;
+			height: 200px;
+			margin: 10px 0px;
+		}
+		#a1 {
+			background: repeating-linear-gradient(45deg,red 45%,white 50%,red 45%);
+			animation: k1 0.5s infinite linear;
+		}
+		@keyframes k1 {
+			0% {background:repeating-linear-gradient(45deg,red 45%,white 50%,red 45%)}
+			50% {background:repeating-linear-gradient(45deg,red 45%,white 50%,red 45%)}
+			100% {background:repeating-linear-gradient(45deg,red 45%,white 50%,red 45%)}
+		}
+		#a2 {
+			background: radial-gradient(circle ,yellow,white 30%,black);	
+			animation: k2 1s linear infinite;	
+		}
+		@keyframes k2 {
+			0%{background: radial-gradient(circle ,yellow,white 30%,black);}
+			17%{background: radial-gradient(circle ,yellow,white 30%,black);}
+			33%{background: radial-gradient(circle ,yellow,white 30%,black);}
+			50%{background: radial-gradient(circle ,yellow,white 30%,black);}
+			67%{background: radial-gradient(circle ,yellow,white 30%,black);}
+			83%{background: radial-gradient(circle ,yellow,white 30%,black);}
+			100%{background: radial-gradient(circle ,yellow,white 30%,black);}
+		}
+
+
+
+
+
+	</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2" class="grad"></div>
+	<div id="d3" class="grad"></div>
+	<div id="d4" class="grad"></div>
+	<div id="d5" class="grad"></div>
+	<div id="r1" class="grad"></div>
+	<div id="r2" class="grad"></div>
+	<div id="r3" class="grad"></div>
+	<div id="c1" class="grad"></div>
+	<div id="c2" class="grad"></div>
+	<div id="c3" class="grad"></div>
+	<div id="a1" class="grad"></div>
+	<div id="a2" class="grad"></div>
+	<div id="a3" class="grad"></div>
+
+
+
+	<a href="310116 多元選修作業首頁1.html"> ←  ⊙★回首頁☆⊕  </a>
+
+</body>
+</html>
