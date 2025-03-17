@@ -1,7 +1,7 @@
 ﻿<html>
 <head>
 	<title>0310筆記-CSS</title>
-	<title>顏色?反正就是顏色!</title>
+	<title>0310-色塊</title>
 	<meta charset="UTF-8">
 	<style>
 		
@@ -29,7 +29,7 @@
 			background: linear-gradient(red,yellow);
 		}
 		#d3 {		/* to { top 上  right 右  bottom 下  left 左  } deg=角度，參數   ↑ 漸層作法，用百分比*/
-			background: linear-gradient(123deg right,red,yellow,green,rgb(2, 2, 255),violet,purple)
+			background: linear-gradient(123deg right,red,yellow,green,rgb(0, 0, 255),violet,purple)
 		}
 		#d4 {
 			background: linear-gradient(90deg,red 30%,white 40% ,white 60%,blue 70%)
@@ -82,10 +82,15 @@
 			83%{background: radial-gradient(circle ,yellow,white 30%,black);}
 			100%{background: radial-gradient(circle ,yellow,white 30%,black);}
 		}
-
-
-
-
+		#a3 {
+			background: repeating-conic-gradient(red 10%,white 15%,red 20%);
+			animation: k3 0.2s linear infinite;
+		}
+		@keyframes k3 {
+			0%{background:  repeating-conic-gradient(red 10%,white 15%,red 20%);}
+			50%{background:  repeating-conic-gradient(red 10%,white 15%,red 20%);}
+			100%{background:  repeating-conic-gradient(red 10%,white 15%,red 20%);}
+		}
 
 	</style>
 </head>
@@ -105,8 +110,7 @@
 	<div id="a2" class="grad"></div>
 	<div id="a3" class="grad"></div>
 
-
-
+	
 	<a href="310116 多元選修作業首頁1.html"> ←  ⊙★回首頁☆⊕  </a>
 
 </body>
