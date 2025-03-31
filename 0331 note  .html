@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>0331筆記-JS輸出入</title>
+    <meta charset="UTF-8">
+    <!-- HTML 註解-->
+     <style>/*CSS註解*/
+
+     </style>
+     <script>
+    /*JS多行註解*/   //JS單行註解   | 跟c很像 |
+
+    // alert("hi,how are you today?What about now?");  
+
+    /* alert("hi,how are you today?   What about now?  :)  ");  */
+
+    // name=prompt("WHO ARE YOU?")
+
+    /* console.log("你好,,hello,bonjour,Ciao"+name);  */
+
+    // elm=document.getElemenById("msg");
+
+    /*
+    function hello(name,elm) {
+        elm.innerHTML="hello "+name;
+
+    }
+    */
+
+    function get(id) {
+        return document.getElementById(id);
+    }
+    function add(a,b) {
+        return a+b;
+    }
+    function calc() {
+        elm1=document.getElementById("n1");
+        elm2=document.getElementById("n2");
+        elmans=document.getElementById("ans");
+
+        n1=parseInt(elm1.value);
+        if(isNaN(n1)) n1=0;
+        n2=parseInt(elm2.value);
+        if(isNaN(n2)) n2=0;
+
+        //  NaN  =  Not A Number 
+
+        //  elmans.value=add(n1,n2);
+
+        get("ans").value=add(n1,n2);
+    }
+    
+     </script>
+</head>
+<body>
+    <button onclick="hello('jack',this)">打招呼!beat</button>
+    <button onclick="hello('john',this);">打招呼!hehe</button> 
+    <div id="msg"></div>
+    <input type="text">
+    <input type="password">
+    <input type="nuber">
+    <hr>
+    <input type="date">
+    <input type="datetime-local">
+    <hr>
+    <input type="color">
+    <input type="email">
+    <hr>
+    <input type="text" id="n1">+<input type="text" id="n2">
+    <button onclick="calc();">『等於』</button>
+    <input type="text" id="ans">
+    <hr>
+    <div id="msg">innerHTML</div>
+
+    <a href="310116 多元選修作業首頁1.html"> ←  ⊙★回首頁☆⊕  </a>
+</body>
+</html>
