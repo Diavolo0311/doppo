@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>0331筆記-JS輸出入</title>
+    <title>0331筆記-JS輸出入1</title>
     <meta charset="UTF-8">
     <!-- HTML 註解-->
      <style>/*CSS註解*/
@@ -26,16 +26,19 @@
     }
     */
 
-    function get(id) {
+    function get(id) { //縮小文字
         return document.getElementById(id);
     }
-    function add(a,b) {
+    function add(a,b) { //做什麼事
         return a+b;
     }
-    function calc() {
-        elm1=document.getElementById("n1");
+    function calc() { //相加
+        elm1=get("n1");
+        elm1=get("n2");
+                // ↑
+        /*elm1=document.getElementById("n1");
         elm2=document.getElementById("n2");
-        elmans=document.getElementById("ans");
+        elmans=document.getElementById("ans");*/
 
         n1=parseInt(elm1.value);
         if(isNaN(n1)) n1=0;

@@ -1,3 +1,2 @@
 # doppio
-goose
 loon
