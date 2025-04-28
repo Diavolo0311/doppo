@@ -30,29 +30,32 @@
                 imgs[i].src=`pic/${cards[i]}.png`;
             }
             setTimeout(function(){
-                img.forEach(imgs=>{img.src="pic/0.png";});
+                imgs.forEach(img=>{img.src="pic/0.png";});
             },3000);
             gameStarting=true;
             p1=-1;p2=-1;
         }
         function pickImg() {
-            if(!gameStarting || p2!=0) return;
+            if(!gameStarting || p2!=-1) return;
+            const img = event.target;
+            const idx = imgs.indexOf(img);
             img=event.target;
             idx=imgs.indexOf(img);
-            if(p1==0) {
+            if(p1==-1) {
                 p1=idx;
-                img.src=`pic/${cards[i]}.png`;
+                img.src=`pic/${cards[p1]}.png`;
             } else {
                 p2=idx;
-                img.src=`pic/${cards[i]}.png`;
-                if(cards[p1]!==cards[p2]) {
-                    p1=-1;p2=-1;
-                } else {
+                img.src=`pic/${cards[p2]}.png`;
+                if(cards[p1] !== cards[p2]) {
                     setTimeout(function(){
-                        imgs[p1].src="pic/0.png";
-                        imgs[p2].src="pic/0.png";
-                        p1=-1;p2=-1;
-                    },1000);
+                        imgs[p1].src = "pic/0.png";
+                        imgs[p2].src = "pic/0.png";
+                         p1 = -1; p2 = -1;
+                    }, 1000);
+                } else {
+    // 配對成功就不蓋牌，直接重設 index
+                   p1 = -1; p2 = -1;
                 }
             }
         } 
