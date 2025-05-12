@@ -19,7 +19,7 @@
             font-family: Arial , Helvetica , sans-serif;
             position: absolute;
         }
-        red {
+        #red {
             color:red;
         }
 
@@ -53,7 +53,7 @@
                 }
             }
             words.filter(function(w){
-                return w.innerText.starWith(input);
+                return w.innerText.startsWith(input);
             }).forEach(function(w){
                 w.innerHTML=`<red>${input}</red>` + w.innerText.substr(input.length);
             });
