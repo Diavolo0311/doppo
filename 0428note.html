@@ -19,7 +19,7 @@
             font-family: Arial , Helvetica , sans-serif;
             position: absolute;
         }
-        #red {
+        .red {
             color:red;
         }
 
@@ -42,6 +42,7 @@
                     clearInterval(w.move);
                     w.remove();
                     document.getElementById("gameTime").innerHTML=(++gameTime);
+                    document.getElementById("wordCount").innerHTML = (++wordCont);
                 });
                 input="";
             } else if (event.key=="Backspace") {
@@ -52,10 +53,11 @@
                     input+=event.key;
                 }
             }
+                        //////////////////// 重新標紅//////////////////
             words.filter(function(w){
                 return w.innerText.startsWith(input);
             }).forEach(function(w){
-                w.innerHTML=`<red>${input}</red>` + w.innerText.substr(input.length);
+                w.innerHTML = `<span class="red">${input}</span>` + w.innerText.substr(input.length);
             });
         }
 //------------------------------------------------------------------------------------
@@ -103,8 +105,7 @@
                     }
                 },300,a);
                 document.body.appendChild(a);
-            },6000);
-            t1=setInterval 
+            },6000); 
             setInterval(function(){
                 document.getElementById("gameTime").innerHTML=(++gameTime);
                 if(gameTime>30) {
