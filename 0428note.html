@@ -28,7 +28,7 @@
         input="";
         gameTime=0;
         wordCont=0;
-        function kbDown() {
+        function kbDown(event) {
             event.preventDefault();
             //擋特殊按鍵
             words=Array.from(document.getElementsByClassName("word"));
@@ -46,10 +46,14 @@
                     document.getElementById("gameTime").innerHTML=(++gameTime);
                     document.getElementById("wordCount").innerHTML = (++wordCont);
                 });
-                input="";
+                if (matched) {
+                    input="";
+                }
+
                 words.forEach(function(w){
                     w.innerHTML = w.innerText;
                 });
+                
             } else if (event.key=="Backspace") {
                 input=input.substr(0,input.length-1);
             } else if(event.key.length == 1 ) {
@@ -119,13 +123,13 @@
                 document.getElementById("gameTime").innerHTML = (++gameTime);
                 if (gameTime === 30) {
                     clearInterval(t1);
-                    t1 = setInterval(spawnWord, 3000);  // 改變為更快的產生速度
+                    t1 = setInterval(spawnWord, 6000);  // 字的產生速度
                 }
             }, 1000);
         }
     </script>
 </head>
-<body onkeydown="kbDown();">
+<body onkeydown="kbDown(event);">
     <div id="status" >[𓊝經過的時間:<span id="gameTime">0</span>秒𓊝][❧正確字數 :<span id="wordCount">0</span>字☙]</div>
 
     <button id="btnStart" onclick="gameStart();">  ░▒▓  game start!  ▓▒░  </button>
