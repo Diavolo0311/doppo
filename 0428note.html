@@ -59,15 +59,21 @@
             } else if(event.key.length == 1 ) {
                 var code=event.key.charCodeAt(0);
                 if((code>=65 && code<= 90) || (code>=97 && code<=122)) {
-                    input+=event.key;
+                    input += event.key.toLowerCase();
                 }
             }
             //////////////////重新標紅//////////////////
-            words.filter(function(w){
+            let matchedWords = words.filter(function(w){
                 return w.innerText.startsWith(input);
-            }).forEach(function(w){
+                });
+
+                if (matchedWords.length > 0) {
+                matchedWords.forEach(function(w){
                 w.innerHTML = `<span class="red">${input}</span>` + w.innerText.substr(input.length);
-            });
+                });
+            } else {
+                input = "";
+            }
         }
 //------------------------------------------------------------------------------------
         function rand(min,max) {
@@ -77,9 +83,8 @@
         function genWord() {
            var len=rand(3,9);
            var str="";
-           for(i=0; i<len; i++) {
-                var CAPS=[65,97];
-                var randnum=rand(0,25)+CAPS[rand(0,1)];
+           for(let i=0; i<len; i++) {
+                let randnum = rand(97, 122); // 小寫字母
                 str+=String.fromCharCode(randnum);
                 //把這個符號變文字
            }
