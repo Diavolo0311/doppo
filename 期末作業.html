@@ -2,8 +2,43 @@
 <head>
     <title>0519-期末作業</title>
     <meta charset="UTF-8">
+    <style>
+        #status {
+            background-image: url("pic/134.png");
+            width: 820px;
+            z-index: 9;
+            padding: 10px;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            top:0;
+        }
+        #kela {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+    </style>
+    <script>
+        function gameInit() {
+            kela=document.getElementById("kela");
+            game_time=0
+            game_score=0
+        }
+        function mykeydown() {
+            event.preventDefault();
+            if(event.key=="a") {
+                kela.moving=-5;
+            } else if(event.key=="d") {
+                kela.moving=5;
+            }
+        }
+        function mykeyup() {
+            kela.moving=0;
+        }
+    </script>
 </head>
-<body>
-
+<body onkeydown="mykeydown();" onkeyup="mykeyup();">
+    <div id="status">Time：<span id="gameTime">0</span> 秒 <hr>閃避次數 : <span>0</span> 次</div>
+    <img id="kela" src="pic/jojo 吉良.png">
+    
 </body>
 </html>
