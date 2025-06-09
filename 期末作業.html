@@ -5,40 +5,107 @@
     <style>
         #status {
             background-image: url("pic/134.png");
-            width: 820px;
+            width: 800px;
             z-index: 9;
             padding: 10px;
             font-family:Georgia, 'Times New Roman', Times, serif;
             top:0;
+            font-style: normal;
         }
-        #kela {
-            width: 100px;
-            height: 100px;
+        #background {
+            width: 820px;
+            height: 820px;
+            position: relative;
+            background-image: url("pic/background.png");
+        }
+        #ez {
+            width: 75px;
+            height: 85px;
             position: absolute;
+        }
+        .angelo {
+            position: absolute;
+            height: 55px;
+            width: 55px;
+            top:-40;
+            z-index: 1;
         }
     </style>
     <script>
         function gameInit() {
-            kela=document.getElementById("kela");
+            ez=document.getElementById("ez");
+            ez.w=75;
+            ez.h=85;
+            ez.pos={x:(820-ez.w)/2, y:820-ez.h};
+            ez.style.left=ez.pos.x+"px";
+            ez.style.top=ez.pos.y+"px";
+            ez.moving=0;      ///* 0 to stop , +1 to right ,-1 to left */////
+            ez.move=setInterval(function(){
+                if(ez.moving==0) return;
+                if (ez.pos.x <= 0 && ez.moving < 0) return;
+                if (ez.pos.x >= 820 - ez.w && ez.moving > 0) return;
+                ez.pos.x += ez.moving;
+                ez.style.left=ez.pos.x+"px";
+            },15);
+
+            setInterval(function () {
+                game_time++;
+                document.getElementById("gameTime").textContent = game_time;
+            }, 1000);
+            setInterval(newangelo,1500);
             game_time=0
             game_score=0
         }
         function mykeydown() {
             event.preventDefault();
             if(event.key=="a") {
-                kela.moving=-5;
+                ez.moving=-5;
             } else if(event.key=="d") {
-                kela.moving=5;
+                ez.moving=5;
             }
         }
         function mykeyup() {
-            kela.moving=0;
+            ez.moving=0;
+        }
+        function rand(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function newangelo() {
+            var a=document.createElement("img");
+            a.src="pic/114514.jpg";
+            a.className="angelo";
+            a.w=30;
+            a.h=30;
+            a.style.position = "absolute";
+            a.pos={x:rand(5,795),y:-40};
+            a.style.left=a.pos.x+"px";
+            a.style.top=a.pos.y+"px";
+
+            a.move=setInterval (function() {
+                a.pos.x += rand(-2,2); //左右搖擺
+                a.pos.y += 2; // falling down
+                a.style.left = a.pos.x + "px";
+                a.style.top = a.pos.y + "px";
+
+                ///  落到畫面底部  :)
+                if (a.pos.y > 820) {
+                    clearInterval(a.move);
+                    a.remove(); // 清掉
+                    game_score++; // 加分
+                    document.getElementById("gameScore").textContent = game_score;
+                }
+
+            }, 20);
+            document.getElementById("background").appendChild(a); // 將 angelo 加入畫面
         }
     </script>
 </head>
-<body onkeydown="mykeydown();" onkeyup="mykeyup();">
+<body onload="gameInit()" onkeydown="mykeydown();" onkeyup="mykeyup();"></body>
     <div id="status">Time：<span id="gameTime">0</span> 秒 <hr>閃避次數 : <span>0</span> 次</div>
-    <img id="kela" src="pic/jojo 吉良.png">
-    
+    <div id="background">
+        <img id="ez" src="pic/ez.jpg">
+        <img class="angelo"  src="pic/114514.jpg">
+    </div>
+
 </body>
 </html>
