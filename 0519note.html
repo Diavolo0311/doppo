@@ -88,23 +88,25 @@
             b.w=4;
             b.h=6;
             b.pos={x:ship.pos.x+(ship.w-b.w)/2,y:ship.pos.y-b.h};
-            b.style.left=ship.pos.x+"px";
-            b.style.top=ship.pos.y+"px";
+            b.style.left=b.pos.x+"px";
+            b.style.top=b.pos.y+"px";
+
             b.move=setInterval(function() {
-                b.pos.y--;
+                b.pos.y -= 4 ;
                 b.style.top=b.pos.y+"px";
                 if(b.pos.y<0) {
                     die(b);
                 } else {
-                    var ufos=Array.from(document.getElementByIdClassName("ufo")).filter(function(u){
-                        return (u.pos.x<b.pos.x && u.pos.x+u.w > b.pos.x+b.w) && (u.pos.y+u.h >= b.pos.y);
-                });
-                    if(ufos.length > 0) {
+                    var ufos=Array.from(document.getElementByIdClassName("ufos"));
+                    ufos.forEach(function(u) {
+                    if(isColliding(b,u)) {
                         game_score+=ufo.length;
-                        ufos.forEach(function(u){die(u);});
+                        die(u);
                         die(b);
+                        game_score++;
+                        document.querySelector("#status span:nth-child(4)").textContent = game_score;
                     }
-                }   
+                });
             },5);
             document.getElementById("universal").appendChild(b);
         }
@@ -120,6 +122,15 @@
             return Math.floor(Math.random()*(max-min+1))+min;
         }
 
+        function isColliding(a, b) {
+            return (
+                a.pos.x < b.pos.x + b.w &&
+                a.pos.x + a.w > b.pos.x &&
+                a.pos.y < b.pos.y + b.h &&
+                a.pos.y + a.h > b.pos.y
+            );
+        }
+
 
         function newUFO() {
             var u=document.createElement("img");
@@ -133,8 +144,13 @@
             u.move=setInterval(function(){
                 u.pos.x += rand(-2,2);
                 u.pos.y++;
+                u.style.left=u.pos.x+"px";
                 u.style.top=u.pos.y+"px";
-                if(u.pos.y>760) die(u);
+                if(u.pos.y>760) {
+                    die(u);
+                } else if (isColliding(u,ship)) {
+                    die(u);
+                }
             },12);
             document.getElementById("universal").appendChild(u);
         }
