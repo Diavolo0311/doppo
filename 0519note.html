@@ -29,7 +29,7 @@
         .bullet {
             width: 4px;
             height: 6px;
-            background: yellow;
+            background: rgb(8, 196, 33);
             position: absolute;
             left:398px;
             top:734;
@@ -62,6 +62,13 @@
             setInterval(newUFO,2500);
             game_score=0;
             game_time=0;
+            let timer;
+            timer=setInterval(updateTime,1000);
+        }
+
+        function updateTime() {
+            game_time++;
+            document.querySelector("#status span:nth-child(1)").textContent=game_time;
         }
 
 
@@ -96,20 +103,23 @@
                 b.style.top=b.pos.y+"px";
                 if(b.pos.y<0) {
                     die(b);
+                    clearInterval(b.move);
                 } else {
-                    var ufos=Array.from(document.getElementByIdClassName("ufos"));
+                    var ufos=Array.from(document.getElementByClassName("ufo"));
+                    
                     ufos.forEach(function(u) {
-                    if(isColliding(b,u)) {
-                        game_score+=ufo.length;
-                        die(u);
-                        die(b);
-                        game_score++;
-                        document.querySelector("#status span:nth-child(4)").textContent = game_score;
-                    }
-                });
+                        if(isColliding(b,u)) {
+                            game_score++;
+                            die(b);
+                            die(u);
+                            clearInterval(b.move);
+                        }
+                    });
+                }
             },5);
             document.getElementById("universal").appendChild(b);
         }
+        
 
 
         function die(obj) {
@@ -150,6 +160,10 @@
                     die(u);
                 } else if (isColliding(u,ship)) {
                     die(u);
+                } else if (isColliding(u.bullet)) {
+                    die(u);
+                    die(b);
+                    game_score++;
                 }
             },12);
             document.getElementById("universal").appendChild(u);
