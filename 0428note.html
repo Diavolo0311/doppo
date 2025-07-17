@@ -67,9 +67,9 @@
                 return w.innerText.startsWith(input);
                 });
 
-                if (matchedWords.length > 0) {
+            if (matchedWords.length > 0) {
                 matchedWords.forEach(function(w){
-                w.innerHTML = `<span class="red">${input}</span>` + w.innerText.substr(input.length);
+                w.innerHTML = `<span class="red">${input}</span>`+w.innerText.substr(input.length);
                 });
             } else {
                 input = "";
