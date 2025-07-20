@@ -63,13 +63,12 @@
                 }
             }
             //////////////////重新標紅//////////////////
-            let matchedWords = words.filter(function(w){
+            let matchedWords= words.filter(function(w) {
                 return w.innerText.startsWith(input);
                 });
-
-            if (matchedWords.length > 0) {
-                matchedWords.forEach(function(w){
-                w.innerHTML = `<span class="red">${input}</span>`+w.innerText.substr(input.length);
+            if (matchedWords.length>0) {
+                matchedWords.forEach(function(w) {
+                w.innerHTML=`<span class="red">${input}</span>`+w.innerText.substr(input.length);
                 });
             } else {
                 input = "";
@@ -84,7 +83,7 @@
            var len=rand(3,9);
            var str="";
            for(let i=0; i<len; i++) {
-                let randnum = rand(97, 122); // 小寫字母
+                let randnum = rand(97, 122); // 改小寫字母
                 str+=String.fromCharCode(randnum);
                 //把這個符號變文字
            }
